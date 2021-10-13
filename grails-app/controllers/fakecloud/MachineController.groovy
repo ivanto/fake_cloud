@@ -1,5 +1,6 @@
 package fakecloud
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.rest.RestfulController
 import grails.validation.ValidationException
@@ -7,6 +8,9 @@ import static org.springframework.http.HttpStatus.*
 
 @Secured("ROLE_USER")
 class MachineController extends RestfulController<Machine> {
+    static responseFormats = ['json', 'xml']
+
+    //static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     MachineService machineService
 
@@ -14,9 +18,51 @@ class MachineController extends RestfulController<Machine> {
         super(Machine)
     }
 
-   /*/ static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    /**
+     * Needs to be implemented
+     * @return
+     */
+    def start(){
+        def resp = ["success":true]
+        render resp as JSON
+    }
+
+    /**
+     * Needs to be implemented
+     * @return
+     */
+    def stop(){
+        def resp = ["success":true]
+        render resp as JSON
+    }
+
+    /**
+     * Needs to be implemented
+     * @return
+     */
+    def restart(){
+        def resp = ["success":true]
+        render resp as JSON
+    }
 
 
+    def create() {
+        respond new Machine(params)
+    }
+
+    /**
+     * Needs to be implemented
+     * @return
+     */
+    def destroy(){
+        def resp = ["success":true]
+        render resp as JSON
+    }
+
+    def search(){
+        def resp = ["success":true]
+        render resp as JSON
+    }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -25,10 +71,6 @@ class MachineController extends RestfulController<Machine> {
 
     def show(Long id) {
         respond machineService.get(id)
-    }
-
-    def create() {
-        respond new Machine(params)
     }
 
     def save(Machine machine) {
@@ -104,5 +146,5 @@ class MachineController extends RestfulController<Machine> {
             }
             '*'{ render status: NOT_FOUND }
         }
-    }*/
+    }
 }
