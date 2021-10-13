@@ -1,10 +1,11 @@
 package fakecloud
 
-
+import grails.plugin.springsecurity.annotation.Secured
 import me.quantox.fakecloud.auth.Role
 import me.quantox.fakecloud.auth.User
 import me.quantox.fakecloud.auth.UserRole
 
+@Secured("ROLE_USER")
 class BootStrap {
 
     def init = { servletContext ->
@@ -26,9 +27,10 @@ class BootStrap {
                 firstName: "Test",
                 lastName: "Test").save()
 
-        if (!UserRole.findByUserAndRole(testUser, userRole)) {
-            UserRole.findByUserAndRole(testUser, userRole)
-        }
+        // TODO Examine the issue
+        //if (!UserRole.findByUserAndRole(testUser, userRole)) {
+            new UserRole(user: testUser, role: userRole).save(failOnError:true)
+        //}
     }
     def destroy = {
     }

@@ -16,7 +16,7 @@ enum Status {
 class Machine {
 
     String uid
-    Status status //TODO move to enum
+    Status status
     Date createdAt
     Boolean active = true
 

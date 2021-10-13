@@ -8,6 +8,17 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
+    plugin:
+        springsecurity:
+            rest:
+               # login:
+                 #   endpointUrl: /api/login
+                 #   active: true
+                 #   failureStatusCode: 401
+                token:
+                    storage:
+                        jwt:
+                            secret: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 info:
     app:
         name: '@info.app.name@'
@@ -104,12 +115,6 @@ dataSource:
     username: sa
     password: ''
 
-#dataSource:
-#    pooled: true
-#    jmxExport: true
-#    driverClassName: com.mysql.jdbc.Driver
-#    username: root
-#    password: prometeus
 environments:
     development:
         dataSource:

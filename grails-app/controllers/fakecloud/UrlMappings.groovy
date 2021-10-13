@@ -3,6 +3,9 @@ package fakecloud
 class UrlMappings {
 
     static mappings = {
+
+        "/api/machines"(resources:"machine")
+
         "/$controller/$action?/$id?(.$format)?"{
             constraints {
                 // apply constraints here
